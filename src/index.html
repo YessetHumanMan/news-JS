@@ -1,47 +1,107 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>NewsPortal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="PulseWire is a responsive news explorer powered by News API." />
+        <link rel="icon" href="assets/newspaper.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <title>PulseWire — News Explorer</title>
     </head>
     <body>
-        <header>
-            <h1>News Portal</h1>
+        <header class="site-header">
+            <div class="shell site-header__content">
+                <a class="brand" href="#top" aria-label="PulseWire home">
+                    <span class="brand__icon" aria-hidden="true">
+                        <img src="assets/newspaper.svg" alt="" />
+                    </span>
+                    <span>PulseWire</span>
+                </a>
+                <div class="hero" id="top">
+                    <p class="eyebrow">Independent news explorer</p>
+                    <h1>Find the signal<br />inside the noise.</h1>
+                    <p class="hero__summary">
+                        Pick a newsroom and explore its latest stories in a focused, responsive feed.
+                    </p>
+                </div>
+            </div>
         </header>
-        <main>
-            <div class="sources buttons"></div>
-            <div class="news"></div>
+
+        <main class="shell main-content">
+            <section class="source-section" aria-labelledby="source-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow eyebrow--dark">Newsrooms</p>
+                        <h2 id="source-heading">Choose your source</h2>
+                    </div>
+                    <p>Scroll horizontally to explore every available publisher.</p>
+                </div>
+                <div class="sources" role="toolbar" aria-label="Available news sources"></div>
+            </section>
+
+            <section class="news-section" aria-labelledby="stories-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow eyebrow--dark">Live feed</p>
+                        <h2 id="stories-heading">Latest stories</h2>
+                    </div>
+                    <p>Fresh reporting from the newsroom selected above.</p>
+                </div>
+                <div class="news" aria-live="polite" aria-busy="false"></div>
+            </section>
         </main>
-        <footer>
-            <p class="copyright">Copyright <a href="https://newsapi.org">NewsAPI</a></p>
+
+        <footer class="site-footer">
+            <div class="shell site-footer__content">
+                <a
+                    class="author-link"
+                    href="https://github.com/YessetHumanMan"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub · YessetHumanMan
+                </a>
+                <span>© 2026 PulseWire</span>
+                <a
+                    class="course-link"
+                    href="https://rs.school/courses/javascript"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="RS School JavaScript course"
+                >
+                    <img src="assets/rss-logo.svg" alt="RS School" />
+                </a>
+            </div>
         </footer>
 
         <template id="sourceItemTemp">
             <button class="source__item" type="button">
+                <span class="source__item-category"></span>
                 <span class="source__item-name"></span>
             </button>
         </template>
 
         <template id="newsItemTemp">
-            <div class="news__item">
+            <article class="news__item">
                 <div class="news__meta">
-                    <div class="news__meta-photo"></div>
-                    <ul class="news__meta-details">
-                        <li class="news__meta-author"></li>
-                        <li class="news__meta-date"></li>
-                    </ul>
+                    <div class="news__meta-photo" role="img" aria-label="Article illustration"></div>
+                    <div class="news__meta-overlay">
+                        <span class="news__meta-author"></span>
+                        <time class="news__meta-date"></time>
+                    </div>
                 </div>
                 <div class="news__description">
-                    <h2 class="news__description-title"></h2>
-                    <h3 class="news__description-source"></h3>
+                    <p class="news__description-source"></p>
+                    <h3 class="news__description-title"></h3>
                     <p class="news__description-content"></p>
-                    <p class="news__read-more">
-                        <a href="#">Read More</a>
-                    </p>
+                    <a class="news__read-more" href="#">Read full story <span aria-hidden="true">↗</span></a>
                 </div>
-            </div>
+            </article>
         </template>
     </body>
 </html>

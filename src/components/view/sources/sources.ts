@@ -18,8 +18,10 @@ class Sources {
             const sourceFragment = cloneTemplate('#sourceItemTemp');
             const sourceButton = queryRequired<HTMLButtonElement>('.source__item', sourceFragment);
             const sourceName = queryRequired<HTMLElement>('.source__item-name', sourceFragment);
+            const sourceCategory = queryRequired<HTMLElement>('.source__item-category', sourceFragment);
 
             sourceName.textContent = source.name;
+            sourceCategory.textContent = source.category;
             sourceButton.dataset.sourceId = source.id;
             sourceButton.dataset.category = source.category;
             sourceButton.setAttribute('aria-pressed', 'false');

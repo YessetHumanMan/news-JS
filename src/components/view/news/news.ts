@@ -17,6 +17,7 @@ class News {
     }
 
     public draw(data: ReadonlyArray<ArticleCard>): void {
+        this.container.setAttribute('aria-busy', 'false');
         this.container.replaceChildren();
 
         if (data.length === 0) {
@@ -33,6 +34,7 @@ class News {
     }
 
     public showStatus(message: string, status: 'loading' | 'error' | 'empty'): void {
+        this.container.setAttribute('aria-busy', String(status === 'loading'));
         const statusElement = document.createElement('p');
         statusElement.className = `news-status news-status--${status}`;
         statusElement.textContent = message;
@@ -48,8 +50,9 @@ class News {
         const title = queryRequired<HTMLElement>('.news__description-title', articleFragment);
         const source = queryRequired<HTMLElement>('.news__description-source', articleFragment);
         const description = queryRequired<HTMLElement>('.news__description-content', articleFragment);
-        const link = queryRequired<HTMLAnchorElement>('.news__read-more a', articleFragment);
+        const link = queryRequired<HTMLAnchorElement>('.news__read-more', articleFragment);
 
+        photo.setAttribute('aria-label', article.title);
         if (article.urlToImage) {
             photo.style.backgroundImage = `url(${JSON.stringify(article.urlToImage)})`;
         } else {
