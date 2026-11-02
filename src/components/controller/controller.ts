@@ -13,25 +13,7 @@ class AppController extends AppLoader {
         );
     }
 
-    public getNews(event: MouseEvent, onSuccess: ResponseCallback<NewsResponse>, onError: ErrorCallback): void {
-        const target = event.target;
-        const sourceContainer = event.currentTarget;
-
-        if (!(target instanceof Element) || !(sourceContainer instanceof HTMLElement)) {
-            return;
-        }
-
-        const sourceButton = target.closest<HTMLElement>('[data-source-id]');
-        if (!sourceButton || !sourceContainer.contains(sourceButton)) {
-            return;
-        }
-
-        const sourceId = sourceButton.dataset.sourceId;
-        if (!sourceId || sourceContainer.dataset.selectedSource === sourceId) {
-            return;
-        }
-
-        sourceContainer.dataset.selectedSource = sourceId;
+    public getNews(sourceId: string, onSuccess: ResponseCallback<NewsResponse>, onError: ErrorCallback): void {
         this.getResponse<NewsResponse>(
             {
                 endpoint: this.newsEndpoint,

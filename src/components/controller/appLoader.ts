@@ -2,15 +2,22 @@ import { ApiClientConfig, ApiEndpoint } from '../../types/api';
 import Loader from './loader';
 
 const DEFAULT_API_URL = 'https://rss-news-api.onrender.com/';
+const MISSING_ENV_VALUE = 'MISSING_ENV_VAR';
+
+function readEnvironmentValue(value: string | undefined): string | undefined {
+    const normalizedValue = value?.trim();
+    return normalizedValue && normalizedValue !== MISSING_ENV_VALUE ? normalizedValue : undefined;
+}
 
 class AppLoader extends Loader {
     protected readonly useMocks: boolean;
 
     public constructor() {
-        const apiKey = process.env.API_KEY?.trim();
-        const useMocks = process.env.USE_MOCKS !== 'false' || !apiKey;
+        const apiKey = readEnvironmentValue(process.env.API_KEY);
+        const useMocksSetting = readEnvironmentValue(process.env.USE_MOCKS);
+        const useMocks = useMocksSetting !== 'false' || !apiKey;
         const config: ApiClientConfig = {
-            baseUrl: process.env.API_URL?.trim() || DEFAULT_API_URL,
+            baseUrl: readEnvironmentValue(process.env.API_URL) || DEFAULT_API_URL,
             apiKey: apiKey || undefined,
             useMocks,
         };
