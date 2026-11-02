@@ -12,8 +12,7 @@
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
         "sourceMap": true,
-        "outDir": "dist",
-        "noEmit": true
+        "outDir": "dist"
     },
     "include": ["src/**/*.ts", "src/**/*.d.ts"],
     "exclude": ["node_modules", "dist"]
